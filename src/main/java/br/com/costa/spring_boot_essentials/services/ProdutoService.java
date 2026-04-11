@@ -59,4 +59,21 @@ public class ProdutoService {
         return novoProduto;
     }
 
+    public ProdutoModel updateProduto(ProdutoDto produtoDto, Integer id) {
+       ProdutoModel produto = PRODUTOS.stream()
+                .filter(p-> p.getId() == (id))
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+       produto.setNome(produtoDto.getNome());
+       produto.setPreco(produtoDto.getPreco());
+       produto.setQuantidade(produtoDto.getQuantidade());
+
+        return  produto;
+    }
+
+    public void deleteProduto(Integer id) {
+        PRODUTOS.removeIf(p -> p.getId() == id);
+    }
+
 }

@@ -4,7 +4,6 @@ import br.com.costa.spring_boot_essentials.database.model.ProdutoModel;
 import br.com.costa.spring_boot_essentials.dtos.ProdutoDto;
 import br.com.costa.spring_boot_essentials.services.ProdutoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +30,18 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.CREATED)
     public ProdutoModel createProduto(@RequestBody ProdutoDto produtoDto) {
         return produtoService.createProduto(produtoDto);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProdutoModel updateProduto(@PathVariable Integer id,
+                                      @RequestBody ProdutoDto produtoDto) {
+        return produtoService.updateProduto(produtoDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduto(@PathVariable Integer id) {
+        produtoService.deleteProduto(id);
     }
 }
