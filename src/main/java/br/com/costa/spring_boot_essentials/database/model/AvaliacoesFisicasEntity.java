@@ -1,6 +1,7 @@
 package br.com.costa.spring_boot_essentials.database.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class AvaliacoesFisicasEntity {
 
     @Id

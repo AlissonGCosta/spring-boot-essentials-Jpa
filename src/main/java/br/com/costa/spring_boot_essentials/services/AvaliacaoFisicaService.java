@@ -5,13 +5,19 @@ import br.com.costa.spring_boot_essentials.database.model.AvaliacoesFisicasEntit
 import br.com.costa.spring_boot_essentials.database.model.repository.IAlunosRepository;
 import br.com.costa.spring_boot_essentials.database.model.repository.IAvaliacoesFisicasRepository;
 import br.com.costa.spring_boot_essentials.dtos.AvaliacaoFisicaDto;
+import br.com.costa.spring_boot_essentials.dtos.AvaliacoesFisicaProjection;
 import br.com.costa.spring_boot_essentials.exception.BadRequestException;
 import br.com.costa.spring_boot_essentials.exception.NotFoundException;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +45,13 @@ public class AvaliacaoFisicaService {
 
         novoAluno.setAvaliacoesFisicas(avaliacoesFisica);
         alunosRepository.save(novoAluno);
+    }
 
+    public List<AvaliacoesFisicaProjection> getAllAvaliacoes(){
+        return avaliacoesFisicasRepository.getAllAvaliacoes();
+    }
 
+    public Page<AvaliacoesFisicaProjection> getAllAvaliacoesPage(Integer page, Integer Size) {
+        return avaliacoesFisicasRepository.getAllAvaliacoesPage(PageRequest.of(page, Size));
     }
 }

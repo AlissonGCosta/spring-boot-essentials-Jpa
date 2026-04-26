@@ -33,5 +33,5 @@ public class TreinosEntity {
             joinColumns= @JoinColumn(name = "treino_id"),
             inverseJoinColumns = @JoinColumn(name = "exercicio_id")
     )
-    private Set<TreinosEntity> treinosExercicios = new HashSet<>();
+    private Set<ExerciciosEntity> treinosExercicios = new HashSet<>();
 }
